@@ -112,6 +112,26 @@
     .tz-pill-you .country { color: #1db954; font-weight: 600; }
     .tz-pill-you .time { color: #1db954; }
 
+    .avatar-stack { display: flex; align-items: center; }
+    .avatar-stack img.avatar, .avatar-stack .avatar-initials {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid #141414;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.1);
+    }
+    .avatar-stack img.avatar { object-fit: cover; }
+    .avatar-stack .avatar-initials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #2a2a2a;
+      color: #ccc;
+      font-size: 10.5px;
+      font-weight: 700;
+    }
+    .avatar-stack > *:not(:first-child) { margin-left: -10px; }
+
     .noise-overlay {
       position: fixed;
       inset: 0;
@@ -266,11 +286,18 @@
     ];
 
     const EVENTS = [
-      { day: 'Thursday · July 9', icon: '🧩', title: 'Workflow with Base 44', subtitle: 'with Ayelet Goldfarb Frank', start: '2026-07-09T14:00:00+03:00', end: null },
+      { day: 'Thursday · July 9', icon: '🧩', title: 'Workshop with Base 44', subtitle: 'with Ayelet Goldfarb Frank', start: '2026-07-09T14:00:00+03:00', end: null,
+        speakers: [{ name: 'Ayelet Goldfarb Frank', photo: 'assets/ayelet-goldfarb-frank.jpg' }] },
       { day: 'Thursday · July 9', icon: '🎓', title: 'TA Session with an Expert', start: '2026-07-09T15:00:00+03:00', end: '2026-07-09T17:00:00+03:00' },
       { day: 'Thursday · July 9', icon: '🎓', title: 'TA Session with an Expert', start: '2026-07-09T18:00:00+03:00', end: '2026-07-09T20:00:00+03:00' },
       { day: 'Sunday · July 12',  icon: '🎓', title: 'TA Session with an Expert', start: '2026-07-12T15:00:00+03:00', end: '2026-07-12T17:00:00+03:00' },
-      { day: 'Monday · July 13',  icon: '🏁', title: 'Final Pitches', start: '2026-07-13T16:00:00+03:00', end: '2026-07-13T20:00:00+03:00' },
+      { day: 'Monday · July 13',  icon: '🏁', title: 'Final Pitches', start: '2026-07-13T16:00:00+03:00', end: '2026-07-13T20:00:00+03:00',
+        speakers: [
+          { name: 'Shaked Shpak', photo: 'assets/shaked-shpak.jpg' },
+          { name: 'Ziv Uch', photo: 'assets/ziv-uch.png' },
+          { name: 'Yoseph Eikelman', photo: 'assets/yoseph-eikelman.jpg' },
+          { name: 'Raphael Gabbay', photo: 'assets/raphael-gabbay.png' },
+        ] },
     ];
 
     function fmtTime(date, tz) {
@@ -314,10 +341,21 @@
         const extraPill = matchedCity ? '' :
           `<div class="tz-pill tz-pill-you"><span class="flag">📍</span><span class="country">Your time</span><span class="time">${fmtRange(start, end, visitorTz)}</span></div>`;
 
+        const speakersHtml = (ev.speakers && ev.speakers.length) ? `
+            <div class="avatar-stack">
+              ${ev.speakers.map(sp => sp.photo
+                ? `<img class="avatar" src="${sp.photo}" alt="${sp.name}" title="${sp.name}" />`
+                : `<div class="avatar-initials" title="${sp.name}">${sp.name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase()}</div>`
+              ).join('')}
+            </div>` : '';
+
         html += `
           <div class="event-card">
             <div class="flex items-center justify-between flex-wrap gap-2 mb-1">
-              <h3 class="text-white font-bold text-base">${ev.icon} ${ev.title}</h3>
+              <div class="flex items-center gap-3">
+                <h3 class="text-white font-bold text-base">${ev.icon} ${ev.title}</h3>
+                ${speakersHtml}
+              </div>
               <span class="time-chip">${badgeFlag} Your time · ${badgeTime}</span>
             </div>
             ${ev.subtitle ? `<p class="text-gray-500 text-xs mb-3">${ev.subtitle}</p>` : '<div class="mb-3"></div>'}
