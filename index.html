@@ -106,6 +106,22 @@
     }
     .meet-btn:hover { background: #1ed760; transform: scale(1.03); }
 
+    .resource-btn {
+      background: #1db954;
+      color: #000;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .resource-btn:hover { background: #1ed760; transform: scale(1.02); }
+
     .tz-pill {
       background: #1c1c1c;
       border: 1px solid rgba(255,255,255,0.06);
@@ -181,7 +197,7 @@
 
       <!-- Mobile header (shown only on mobile) -->
       <div class="md:hidden mb-8 text-center">
-        <span class="badge mb-4">July 9–13, 2026</span>
+        <span class="badge mb-4">July 8–13, 2026</span>
         <h1 class="text-3xl font-black text-white leading-tight mt-3">Global AI<br/>Hackathon 2026</h1>
         <p class="text-gray-400 text-sm mt-3 leading-relaxed">This page is the official Hackathon Calendar — every session, workshop and pitch, with local times for each campus.</p>
       </div>
@@ -210,7 +226,7 @@
                 <span class="text-white font-semibold tracking-wide" style="font-size:15px;">Developers.Institute</span>
               </div>
 
-              <span class="badge mb-6">July 9–13, 2026</span>
+              <span class="badge mb-6">July 8–13, 2026</span>
 
               <h1 class="text-4xl lg:text-5xl font-black text-white leading-[1.05] tracking-tight mt-4">
                 Global AI<br/>Hackathon<br/><span style="color:#1db954">2026</span>
@@ -237,7 +253,7 @@
             <!-- Stats -->
             <div class="relative grid grid-cols-3 gap-3 mt-4">
               <div class="stat-pill">
-                <div class="text-xl font-bold text-white">5 Days</div>
+                <div class="text-xl font-bold text-white">6 Days</div>
                 <div class="text-xs text-gray-500 mt-0.5">Of building</div>
               </div>
               <div class="stat-pill">
@@ -274,6 +290,18 @@
                   <span class="text-white font-semibold" style="font-size:13px;letter-spacing:0.01em;">Base 44</span>
                 </div>
               </div>
+            </div>
+
+            <!-- Resources -->
+            <div class="relative mt-6 flex flex-col gap-3">
+              <a href="hackathon-guidelines.pdf" target="_blank" rel="noopener" class="resource-btn">
+                <span style="font-size:15px;">📋</span>
+                <span>Hackathon Guidelines</span>
+              </a>
+              <a href="teams.pdf" target="_blank" rel="noopener" class="resource-btn">
+                <span style="font-size:15px;">👥</span>
+                <span>Teams</span>
+              </a>
             </div>
           </div>
 
@@ -329,6 +357,7 @@
     };
 
     const EVENTS = [
+      { day: 'Wednesday · July 8', icon: '🎉', title: 'Hackathon Begins', start: '2026-07-08T17:00:00+03:00', end: null },
       { day: 'Thursday · July 9', icon: '🚀', title: 'Hackathon Kickoff Meeting', subtitle: 'Opening ceremony, coding, mentor sessions, workshops, judging, awards — by Avner', start: '2026-07-09T11:00:00+03:00', end: null,
         speakers: [{ name: 'Avner', photo: 'avner.jpg' }], link: 'https://meet.google.com/yhk-jqez-dmg?authuser=0' },
       { day: 'Thursday · July 9', icon: '🧩', title: 'Workshop with Base 44', subtitle: 'with Ayelet Goldfarb Frank', start: '2026-07-09T14:00:00+03:00', end: null,
