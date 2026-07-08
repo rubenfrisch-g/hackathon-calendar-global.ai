@@ -122,6 +122,31 @@
     }
     .resource-btn:hover { background: #1ed760; transform: scale(1.02); }
 
+    .chat-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+      background: #1db954;
+      color: #000;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      border-radius: 500px;
+      padding: 14px 20px;
+      max-width: 280px;
+      box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.5);
+      animation: chat-pulse 2.2s infinite;
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+    .chat-btn:hover { background: #1ed760; transform: scale(1.03); }
+    @keyframes chat-pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.5); }
+      70%  { box-shadow: 0 0 0 12px rgba(29, 185, 84, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0); }
+    }
+
     .tz-pill {
       background: #1c1c1c;
       border: 1px solid rgba(255,255,255,0.06);
@@ -241,6 +266,10 @@
               <p class="text-sm text-gray-500 leading-relaxed mt-4" style="max-width:280px;">
                 Find every session, workshop and pitch below — with local times automatically shown for each participating campus.
               </p>
+
+              <a href="https://hackathon-chat.onrender.com/chat/cmrbvvox40000qq2qkcpz6k2m" target="_blank" rel="noopener" class="chat-btn">
+                💬 Join the Hackathon Chat !!!
+              </a>
             </div>
 
             <!-- Prize Banner -->
@@ -296,7 +325,7 @@
             <div class="relative mt-6 flex flex-col gap-3">
               <a href="hackathon-guidelines.pdf" target="_blank" rel="noopener" class="resource-btn">
                 <span style="font-size:15px;">📋</span>
-                <span>Hackathon Guidelines</span>
+                <span>Hackathon Challenge</span>
               </a>
               <a href="teams.pdf" target="_blank" rel="noopener" class="resource-btn">
                 <span style="font-size:15px;">👥</span>
@@ -357,7 +386,7 @@
     };
 
     const EVENTS = [
-      { day: 'Wednesday · July 8', icon: '🎉', title: 'Hackathon Begins', start: '2026-07-08T17:00:00+03:00', end: null },
+      { day: 'Wednesday · July 8', icon: '🎉', title: 'Opening of the hackathon', start: '2026-07-08T17:00:00+03:00', end: null },
       { day: 'Thursday · July 9', icon: '🚀', title: 'Hackathon Kickoff Meeting', subtitle: 'Opening ceremony, coding, mentor sessions, workshops, judging, awards — by Avner', start: '2026-07-09T11:00:00+03:00', end: null,
         speakers: [{ name: 'Avner', photo: 'avner.jpg' }], link: 'https://meet.google.com/yhk-jqez-dmg?authuser=0' },
       { day: 'Thursday · July 9', icon: '🧩', title: 'Workshop with Base 44', subtitle: 'with Ayelet Goldfarb Frank', start: '2026-07-09T14:00:00+03:00', end: null,
