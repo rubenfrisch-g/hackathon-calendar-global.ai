@@ -197,6 +197,93 @@
     .avatar-stack .avatar-logo svg { width: 16px; height: 16px; }
     .avatar-stack > *:not(:first-child) { margin-left: -10px; }
 
+    .input-field {
+      background: #1c1c1c;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #fff;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      outline: none;
+      width: 100%;
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 14px;
+    }
+    .input-field::placeholder { color: #555; }
+    .input-field:hover { border-color: rgba(255,255,255,0.18); }
+    .input-field:focus {
+      border-color: #1db954;
+      background: #212121;
+      box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.12);
+    }
+
+    .label-text {
+      color: #aaa;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .submit-btn {
+      background: #1db954;
+      color: #000;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      border-radius: 500px;
+      padding: 15px 32px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+    .submit-btn:hover {
+      background: #1ed760;
+      transform: scale(1.02);
+      box-shadow: 0 8px 32px rgba(29, 185, 84, 0.35);
+    }
+    .submit-btn:active { transform: scale(0.98); }
+    .submit-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+
+    #submit-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(12px);
+      padding: 20px;
+    }
+    .modal-card {
+      background: #141414;
+      border: 1px solid rgba(29,185,84,0.3);
+      border-radius: 24px;
+      padding: 36px 32px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 60px rgba(29,185,84,0.08);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255,255,255,0.08);
+      border: none;
+      color: #aaa;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 15px;
+      line-height: 1;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
     .noise-overlay {
       position: fixed;
       inset: 0;
@@ -281,6 +368,10 @@
                   <span style="font-size:15px;">👥</span>
                   <span>Check your Team</span>
                 </a>
+                <button onclick="openSubmitModal()" class="resource-btn" style="border:none;cursor:pointer;">
+                  <span style="font-size:15px;">🚀</span>
+                  <span>Submit Your Project</span>
+                </button>
               </div>
             </div>
 
@@ -370,7 +461,100 @@
     </div>
   </div>
 
+  <!-- Submit Project Modal -->
+  <div id="submit-modal-overlay">
+    <div class="modal-card" id="submit-modal-card">
+      <button class="modal-close" onclick="closeSubmitModal()">✕</button>
+
+      <div id="submit-form-wrap">
+        <h3 style="color:#fff;font-size:20px;font-weight:800;margin:0 0 4px;">Submit Your Project</h3>
+        <p style="color:#888;font-size:13px;margin:0 0 20px;">Fill this in once your team is ready to present.</p>
+        <form id="submit-form" onsubmit="handleProjectSubmit(event)" novalidate>
+          <div class="mb-4">
+            <label class="label-text">Team / Group Name</label>
+            <input type="text" name="teamName" class="input-field" placeholder="Ex: MediAI, GreenBot..." required />
+          </div>
+          <div class="mb-4">
+            <label class="label-text">Project Link</label>
+            <input type="url" name="projectLink" class="input-field" placeholder="https://your-project-url.com" required />
+          </div>
+          <div class="mb-5">
+            <label class="label-text">Demo Video Link (Loom, YouTube...)</label>
+            <input type="url" name="videoLink" class="input-field" placeholder="https://loom.com/share/..." required />
+          </div>
+          <button type="submit" class="submit-btn">Submit Project</button>
+        </form>
+      </div>
+
+      <div id="submit-success" style="display:none;text-align:center;">
+        <div style="width:56px;height:56px;background:rgba(29,185,84,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#1db954" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 style="color:#fff;font-size:18px;font-weight:800;margin:0 0 6px;">Project submitted!</h3>
+        <p style="color:#888;font-size:13px;margin:0 0 20px;">Good luck — we can't wait to see what you built.</p>
+        <button onclick="closeSubmitModal()" style="background:#1db954;color:#000;font-weight:700;font-size:14px;border:none;border-radius:500px;padding:10px 24px;cursor:pointer;">Done</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    const PROJECT_SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbwKJsBqbywQU8TRsGl6K-41Zh2GVcEDO0ixZSrrp0Be3o6Wu7EwQmthwD_AYjBmjQKYxg/exec';
+
+    function openSubmitModal() {
+      document.getElementById('submit-modal-overlay').style.display = 'flex';
+    }
+    function closeSubmitModal() {
+      document.getElementById('submit-modal-overlay').style.display = 'none';
+      document.getElementById('submit-form-wrap').style.display = 'block';
+      document.getElementById('submit-success').style.display = 'none';
+      document.getElementById('submit-form').reset();
+      const btn = document.querySelector('#submit-form .submit-btn');
+      btn.textContent = 'Submit Project';
+      btn.disabled = false;
+    }
+
+    function handleProjectSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      let valid = true;
+
+      form.querySelectorAll('input[required]').forEach(el => {
+        if (!el.value.trim()) {
+          el.style.borderColor = '#e53e3e';
+          el.style.boxShadow = '0 0 0 3px rgba(229,62,62,0.15)';
+          valid = false;
+        } else {
+          el.style.borderColor = '';
+          el.style.boxShadow = '';
+        }
+      });
+      if (!valid) return;
+
+      if (PROJECT_SUBMIT_URL.startsWith('PASTE_')) {
+        alert('Submission is not configured yet — the organizer needs to set PROJECT_SUBMIT_URL in the page code.');
+        return;
+      }
+
+      const payload = {
+        type: 'project',
+        teamName: form.teamName.value,
+        projectLink: form.projectLink.value,
+        videoLink: form.videoLink.value,
+      };
+
+      const btn = form.querySelector('.submit-btn');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      const params = new URLSearchParams(payload).toString();
+      new Image().src = PROJECT_SUBMIT_URL + '?' + params;
+
+      setTimeout(() => {
+        document.getElementById('submit-form-wrap').style.display = 'none';
+        document.getElementById('submit-success').style.display = 'block';
+      }, 800);
+    }
+
     const CITIES = [
       { name: 'Tel Aviv',   flag: '🇮🇱', tz: 'Asia/Jerusalem' },
       { name: 'Port Louis', flag: '🇲🇺', tz: 'Indian/Mauritius' },
