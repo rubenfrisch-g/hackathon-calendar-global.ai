@@ -87,6 +87,23 @@
     .past-toggle-btn:hover { background: rgba(255,255,255,0.08); color: #ccc; }
     .past-toggle-btn #past-toggle-arrow { transition: transform 0.2s ease; }
 
+    .doc-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: #1db954;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 14px;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .doc-banner:hover { background: #1ed760; transform: scale(1.01); }
+    .doc-banner span:first-child { color: #000; font-weight: 700; font-size: 14px; }
+    .doc-banner-cta { color: #000; font-weight: 700; font-size: 13px; white-space: nowrap; }
+
     .event-card {
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.07);
@@ -748,9 +765,14 @@
       arrow.textContent = isHidden ? '▾' : '▸';
     }
 
+    const PRESENTATION_ORDER_DOC = { label: '🎤 Hackathon Presentation Order', url: 'https://docs.google.com/document/d/1oWwQIXfa2k78ftxXHz16FXstpJPlPdxWRBaj7KWpyio/edit?pli=1&tab=t.0' };
+
     function renderCalendar() {
       const root = document.getElementById('calendar-root');
-      let html = '';
+      let html = `<a href="${PRESENTATION_ORDER_DOC.url}" target="_blank" rel="noopener" class="doc-banner">
+        <span>${PRESENTATION_ORDER_DOC.label}</span>
+        <span class="doc-banner-cta">Open doc →</span>
+      </a>`;
 
       if (pastEvents.length) {
         html += `
