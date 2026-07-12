@@ -209,6 +209,7 @@
       font-size: 14px;
     }
     .input-field::placeholder { color: #555; }
+    select.input-field option { background: #1c1c1c; color: #fff; }
     .input-field:hover { border-color: rgba(255,255,255,0.18); }
     .input-field:focus {
       border-color: #1db954;
@@ -472,7 +473,31 @@
         <form id="submit-form" onsubmit="handleProjectSubmit(event)" novalidate>
           <div class="mb-4">
             <label class="label-text">Team / Group Name</label>
-            <input type="text" name="teamName" class="input-field" placeholder="Ex: MediAI, GreenBot..." required />
+            <select name="teamName" class="input-field" required>
+              <option value="" disabled selected>Select your team</option>
+              <option>Empowerhope-devs</option>
+              <option>zagg</option>
+              <option>Hummus & code</option>
+              <option>Falafel Factory</option>
+              <option>Sababa AI</option>
+              <option>The Shawarma Squad</option>
+              <option>Boker Tov AI</option>
+              <option>Burekas Builders</option>
+              <option>Balagan</option>
+              <option>Chutzpah Coders</option>
+              <option>Lions Code</option>
+              <option>Vision IA</option>
+              <option>X</option>
+              <option>LIMITLESS AI</option>
+              <option>NEXORA</option>
+              <option>INNOVTECH</option>
+              <option>BAOBAB LABS</option>
+              <option>SKYNET</option>
+              <option>SMART ONE</option>
+              <option>SRATEGIA</option>
+              <option>POWER-AI</option>
+              <option>MEET-BRAIN</option>
+            </select>
           </div>
           <div class="mb-4">
             <label class="label-text">Project Link</label>
