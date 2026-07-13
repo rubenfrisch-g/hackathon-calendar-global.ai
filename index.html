@@ -766,13 +766,15 @@
     }
 
     const PRESENTATION_ORDER_DOC = { label: '🎤 Hackathon Presentation Order', url: 'https://docs.google.com/document/d/1oWwQIXfa2k78ftxXHz16FXstpJPlPdxWRBaj7KWpyio/edit?pli=1&tab=t.0' };
+    const JUDGING_CRITERIA_DOC = { label: '📊 Judging Criteria', url: 'https://docs.google.com/presentation/d/1NQJY0cfoDgI07h7FcXZglb5lIsirljtm/edit?slide=id.p1&pli=1#slide=id.p1' };
 
     function renderCalendar() {
       const root = document.getElementById('calendar-root');
-      let html = `<a href="${PRESENTATION_ORDER_DOC.url}" target="_blank" rel="noopener" class="doc-banner">
-        <span>${PRESENTATION_ORDER_DOC.label}</span>
-        <span class="doc-banner-cta">Open doc →</span>
-      </a>`;
+      let html = [PRESENTATION_ORDER_DOC, JUDGING_CRITERIA_DOC].map(doc => `
+        <a href="${doc.url}" target="_blank" rel="noopener" class="doc-banner">
+          <span>${doc.label}</span>
+          <span class="doc-banner-cta">Open doc →</span>
+        </a>`).join('');
 
       if (pastEvents.length) {
         html += `
