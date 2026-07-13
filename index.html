@@ -104,6 +104,28 @@
     .doc-banner span:first-child { color: #000; font-weight: 700; font-size: 14px; }
     .doc-banner-cta { color: #000; font-weight: 700; font-size: 13px; white-space: nowrap; }
 
+    .result-row {
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: #1c1c1c;
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 6px;
+    }
+    .result-row.winner {
+      background: rgba(29, 185, 84, 0.12);
+      border-color: rgba(29, 185, 84, 0.5);
+    }
+    .result-rank { color: #888; font-weight: 700; font-size: 13px; }
+    .result-row.winner .result-rank { color: #1db954; }
+    .result-team { color: #fff; font-weight: 600; font-size: 13px; display: block; }
+    .result-campus { color: #888; font-size: 11px; display: block; margin-top: 1px; }
+    .result-score { color: #fff; font-weight: 700; font-size: 14px; }
+    .result-row.winner .result-score { color: #1db954; }
+
     .event-card {
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.07);
@@ -465,9 +487,62 @@
 
           <!-- RIGHT PANEL — CALENDAR -->
           <div class="flex-1 p-8 sm:p-10 lg:p-12">
-            <div class="mb-6" style="text-align:center;">
-              <span class="badge mb-3">🏆 Results are in</span>
-              <img src="winner-hackathon.jpeg" alt="Global AI Hackathon 2026 Results — Winner: Limitless AI" style="width:100%;border-radius:16px;border:1px solid rgba(29,185,84,0.35);box-shadow:0 8px 32px rgba(29,185,84,0.15);margin-top:12px;" />
+            <div class="event-card" style="margin-bottom:24px;">
+              <div class="flex items-center justify-between flex-wrap gap-2 mb-1">
+                <h3 class="text-white font-bold text-base">🏆 Results Are In</h3>
+              </div>
+              <p class="text-gray-500 text-xs mb-4">Winner: <span style="color:#1db954;font-weight:700;">LIMITLESS AI</span> (Ivory Coast) — Weighted Score 3.96 / 5</p>
+
+              <div class="result-row winner">
+                <span class="result-rank">🏆 1</span>
+                <span><span class="result-team">LIMITLESS AI</span><span class="result-campus">🇨🇮 Ivory Coast</span></span>
+                <span class="result-score">3.96</span>
+              </div>
+              <div class="result-row">
+                <span class="result-rank">2</span>
+                <span><span class="result-team">Falafel Factory</span><span class="result-campus">🇮🇱 Israel</span></span>
+                <span class="result-score">3.54</span>
+              </div>
+              <div class="result-row">
+                <span class="result-rank">3</span>
+                <span><span class="result-team">Nexora</span><span class="result-campus">🇨🇮 Ivory Coast</span></span>
+                <span class="result-score">3.53</span>
+              </div>
+              <div class="result-row">
+                <span class="result-rank">4</span>
+                <span><span class="result-team">X</span><span class="result-campus">🇨🇮 Ivory Coast</span></span>
+                <span class="result-score">3.50</span>
+              </div>
+              <div class="result-row">
+                <span class="result-rank">5</span>
+                <span><span class="result-team">Meet-Brain</span><span class="result-campus">🇨🇮 Ivory Coast</span></span>
+                <span class="result-score">2.85</span>
+              </div>
+              <div class="result-row">
+                <span class="result-rank">6</span>
+                <span><span class="result-team">The Shawarma Squad</span><span class="result-campus">🇮🇱 Israel</span></span>
+                <span class="result-score">2.74</span>
+              </div>
+              <div class="result-row">
+                <span class="result-rank">7</span>
+                <span><span class="result-team">Boker Tov AI</span><span class="result-campus">🇮🇱 Israel</span></span>
+                <span class="result-score">2.48</span>
+              </div>
+              <div class="result-row">
+                <span class="result-rank">8</span>
+                <span><span class="result-team">Chutzpah Coders</span><span class="result-campus">🇮🇱 Israel</span></span>
+                <span class="result-score">2.19</span>
+              </div>
+              <div class="result-row">
+                <span class="result-rank">9</span>
+                <span><span class="result-team">Zagg</span><span class="result-campus">🇮🇱 Israel</span></span>
+                <span class="result-score">2.15</span>
+              </div>
+              <div class="result-row" style="margin-bottom:0;">
+                <span class="result-rank">10</span>
+                <span><span class="result-team">Burekas Builders</span><span class="result-campus">🇮🇱 Israel</span></span>
+                <span class="result-score">1.80</span>
+              </div>
             </div>
 
             <div class="mb-6">
